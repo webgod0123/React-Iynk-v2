@@ -1,0 +1,54 @@
+/* .sort-select-container {
+
+} */
+
+.sort-select__control {
+  border-color: var(--color-secondary) !important;
+  font-size: 18px;
+  line-height: 24px;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  color: var(--color-secondary) !important;
+}
+
+.sort-select__value-container {
+  padding: 6px 8px !important;
+}
+
+/* .sort-select__indicators {
+  
+} */
+
+.sort-select__indicator-separator {
+  display: none;
+}
+
+.sort-select__menu {
+  margin-top: 18px !important;
+  box-shadow: 0px 5px 15px 5px #00000040 !important;
+}
+/* 
+.sort-select__menu-list {
+
+} */
+
+.sort-select__option {
+  cursor: pointer !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+.sort-select__option:hover,
+.sort-select__option.selected {
+  background: var(--color-primary) !important;
+}
+
+.sort-select__option--is-selected,
+.sort-select__option--is-focused {
+  background: var(--color-primary) !important;
+}
+
+.sort-select__indicator > svg {
+  fill: black !important;
+}
