@@ -1,12 +1,23 @@
 :root {
   --color-primary: #ffb3b3;
   --color-secondary: #000000;
+  --text-color-primary: #ffff;
+  --text-color-secondary: #ffff;
+}
+
+.text-color-primary {
+  color: var(--text-color-primary);
+}
+
+.text-color-secondary {
+  color: var(--text-color-secondary);
 }
 
 body {
   margin: 0;
   font-family: Poppins;
   color: var(--color-secondary);
+  font-size: 14px;
 }
 
 a,
@@ -141,7 +152,7 @@ a:focus-visible {
   padding-bottom: 60px;
 }
 
-.footer-title {
+.footer-title, .font-medium {
   font-size: 24px;
   line-height: 30px;
 }
@@ -166,7 +177,7 @@ a:focus-visible {
   display: none;
 }
 
-.explore-content {
+.page-content {
   padding-top: 180px;
 }
 
@@ -204,9 +215,12 @@ a:focus-visible {
 }
 
 /* -----------------button css------------------ */
+button, input {
+  outline: none;
+}
+
 .btn {
   padding: 11px 35px;
-  outline: none;
   cursor: pointer;
   border: none;
   border-radius: 10px;
@@ -214,10 +228,10 @@ a:focus-visible {
 
 .btn-black {
   background-color: var(--color-secondary);
-  color: white;
+  color: var(--text-color-secondary);
 }
 .btn-black:hover {
-  color: white;
+  color: var(--text-color-secondary);
 }
 
 .paginate-btn {
@@ -240,6 +254,8 @@ a:focus-visible {
   background-color: white;
   color: var(--color-secondary);
   padding: 9px 20px;
+  border: none;
+  border-radius: 5px;
 }
 
 label {
@@ -286,7 +302,7 @@ input::-webkit-inner-spin-button {
   }
 
   .navbar-menus.active {
-    max-height: 160px;
+    max-height: 100vh;
   }
 
   .menu-icon {
@@ -303,7 +319,7 @@ input::-webkit-inner-spin-button {
     width: 100px;
   }
 
-  .explore-content {
+  .page-content {
     padding-top: 130px;
   }
 }
@@ -355,7 +371,7 @@ input::-webkit-inner-spin-button {
     margin-bottom: 25px;
   }
 
-  .explore-content {
+  .page-content {
     padding-top: 120px;
   }
 

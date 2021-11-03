@@ -13,8 +13,6 @@ interface NavigationBarProps {
 }
 
 interface NavigationMenuProps {
-  userSignedIn: boolean;
-  linksSigned: any[];
   links: any[];
   activeLink: string;
 }
@@ -28,8 +26,6 @@ const getWindowDimensions = () => {
 };
 
 const NavigationMenu = ({
-  userSignedIn,
-  linksSigned,
   links,
   activeLink,
 }: NavigationMenuProps) => {
@@ -50,66 +46,64 @@ const NavigationMenu = ({
 
   return (
     <>
-      {userSignedIn
-        ? linksSigned.map((link, index) => (
-          <Flex
-            justifyContent="flex-end"
-            alignItems="center"
-            direction="row"
-            key={index}
+      {links.map((link, index) => 
+        <Flex
+          justifyContent="flex-end"
+          alignItems="center"
+          direction="row"
+          key={index}
+        >
+          <div
+            className={
+              linkArr[1] === link.active
+                ? "px-2 mx-4 py-2 navbar-menu font-normal position-relative active"
+                : "px-2 mx-4 py-2 navbar-menu font-normal position-relative"
+            }
           >
-            <div
-              className={
-                linkArr[1] === link.active
-                  ? "px-2 mx-4 py-2 navbar-menu font-normal position-relative active"
-                  : "px-2 mx-4 py-2 navbar-menu font-normal position-relative"
-              }
-            >
-              {link.subMenus ? (
-                <CustomModal
-                  position={
-                    windowDimensions.width <= 900
-                      ? "bottom right"
-                      : "bottom center"
-                  }
-                  isShowModal={isShowModal}
-                  triggerComponent={
-                    <div onClick={() => setIsShowModal(true)}>
-                      {link.menu}
-                      <Image
-                        width="13px"
-                        height="auto"
-                        src={Arrow}
-                        styles={{ marginLeft: "10px" }}
-                      />
-                    </div>
-                  }
-                >
-                  <div className="font-normal">
-                    {link.subMenus.map((submenu, index) => (
-                      <div
-                        onClick={() => setIsShowModal(false)}
-                        key={index}
-                        className="py-1"
-                      >
-                        <Link key={index} to={link.link + submenu.link}>
-                          {submenu.menu}
-                        </Link>
-                      </div>
-                    ))}
+            {link.subMenus ? (
+              <CustomModal
+                position={
+                  windowDimensions.width <= 900
+                    ? "bottom right"
+                    : "bottom center"
+                }
+                isShowModal={isShowModal}
+                triggerComponent={
+                  <div onClick={() => setIsShowModal(true)}>
+                    {link.menu}
+                    <Image
+                      width="13px"
+                      height="auto"
+                      src={Arrow}
+                      styles={{ marginLeft: "10px" }}
+                    />
                   </div>
-                </CustomModal>
+                }
+              >
+                <div className="font-normal">
+                  {link.subMenus.map((submenu, index) => (
+                    <div
+                      onClick={() => setIsShowModal(false)}
+                      key={index}
+                      className="py-1"
+                    >
+                      <Link key={index} to={link.link + submenu.link}>
+                        {submenu.menu}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </CustomModal>
+            ) : (
+              link.external ? (
+                <Link to="#" onClick={() => {window.open(link.link)}}>{link.menu}</Link>
               ) : (
                 <Link to={link.link}>{link.menu}</Link>
-              )}
-            </div>
-          </Flex>
-        ))
-        : links.map((link, index) => (
-          <div className="px-2 mx-4 py-1 navbar-menu font-normal" key={index}>
-            {link.menu}
+              )
+            )}
           </div>
-        ))}
+        </Flex>
+      )}
     </>
   );
 };
@@ -127,16 +121,24 @@ const NavigationBar = ({ userSignedIn }: NavigationBarProps) => {
         { menu: "Find Venues", link: "/dj_venues" },
       ],
     },
-    { menu: "Dashboard", link: "#", active: "#" },
-    { menu: "Message", link: "#", active: "#" },
-    { menu: "Main Site", link: "#", active: "#" },
+    { menu: "Dashboard", link: "/dashboard", active: "dashboard" },
+    { menu: "Message", link: "/message", active: "message" },
+    { menu: "Main Site", link: "https://www.lynkevents.com/", active: "#", external: true },
     { menu: "Log Out", link: "#", active: "#" },
   ];
 
   const links: any[] = [
-    { menu: "Explore", link: "#", active: "#" },
-    { menu: "Main Site", link: "#", active: "#" },
-    { menu: "Log in", link: "#", active: "#" },
+    {
+      menu: "Explore",
+      link: "/explore",
+      active: "explore",
+      subMenus: [
+        { menu: "Find Djs", link: "/dj_explore" },
+        { menu: "Find Venues", link: "/dj_venues" },
+      ],
+    },
+    { menu: "Main Site", link: "https://www.lynkevents.com/", active: "#", external: true },
+    { menu: "Log in", link: "/sign-in", active: "sign-in" },
   ];
 
   return (
@@ -164,9 +166,7 @@ const NavigationBar = ({ userSignedIn }: NavigationBarProps) => {
         }}
       >
         <NavigationMenu
-          userSignedIn={userSignedIn}
-          linksSigned={linksSigned}
-          links={links}
+          links={userSignedIn ? linksSigned : links}
           activeLink={history.location.pathname}
         />
       </div>

@@ -24,14 +24,20 @@ const Paginate = ({ cssClasses, styles, maxPageNumber, pageNumber, setPageNumber
     >
       {pageNumber > 1 &&
         <Button cssClasses={["paginate-btn", "mx-3", "font-normal"]}
-          onClick={()=> setPageNumber(prev => prev - 1)}
+          onClick={()=> {
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
+            setPageNumber(prev => prev - 1)
+          }}
         >
           <Image src={ArrowLeft} width="11" height="22" />
         </Button>
       }
       {pageNumber < maxPageNumber &&
         <Button cssClasses={["paginate-btn", "mx-3", "font-normal"]}
-          onClick={()=>setPageNumber(prev => prev + 1)}
+          onClick={()=>{
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
+            setPageNumber(prev => prev + 1)
+          }}
         >
           <Image src={ArrowRight} width="11" height="22" />
         </Button>

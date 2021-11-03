@@ -122,7 +122,7 @@ const Explore = ({
   React.useEffect(
     () => {
       console.log('handle sort change');
-      
+
     },
     [sort]
   )
@@ -159,7 +159,7 @@ const Explore = ({
   };
 
   return (
-    <div className="explore-content main-content">
+    <div className="page-content main-content">
       <h1>
         <b>{header}</b>
       </h1>

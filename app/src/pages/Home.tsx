@@ -18,7 +18,7 @@ import Image3 from "../assets/images/dj-music.png";
 import Image4 from "../assets/images/message.png";
 
 const Home = () => {
-  const userSignedIn: boolean = true;
+  const userSignedIn: boolean = false;
   const flexItems: any[] = [
     {
       title: "Favourite DJ’s",
@@ -71,7 +71,7 @@ const Home = () => {
             accident, sometimes on purpose (injected humour and the like).
           </div>
           {!userSignedIn ? (
-            <button className="login-btn bg-white border-0 font-normal">
+            <button className="login-btn bg-white border-0 font-normal" onClick={() => window.location.href ='/sign-in'}>
               Log In
             </button>
           ) : null}

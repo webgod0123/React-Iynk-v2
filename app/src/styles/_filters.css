@@ -5,7 +5,7 @@
 }
 
 .filter-tab.active {
-  color: white;
+  color: var(--text-color-primary);
   border-color: var(--color-primary);
   background-color: var(--color-primary);
 }
@@ -61,7 +61,7 @@
 }
 
 .check-form.active label {
-  color: white;
+  color: var(--text-color-primary);
 }
 
 .check-form.active label:before {
